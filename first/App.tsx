@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
@@ -23,12 +16,10 @@ type SectionProps = PropsWithChildren<{
 
 function App(): JSX.Element {
 
-  // return<View><Text>Hello WOrld!</Text></View>
 
   return (
     <SafeAreaView>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic">
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
           <AppProvider>
           <Game></Game>
           </AppProvider>

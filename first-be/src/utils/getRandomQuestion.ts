@@ -1,12 +1,11 @@
 import testTriviaQuestions from "../data/testTriviaQuestions"
+import Question from "../models/Question";
 
 
 
-const getRandomQuestion = ()=>{
-    const questions = testTriviaQuestions
-    const randomIndex = Math.floor(Math.random()*questions.length)
-    console.log({randomIndex,questions})
-    return questions[randomIndex]
+const getRandomQuestion =async  ()=>{
+    const results = await Question.aggregate([{ $sample: { size: 1 } }]).exec();
+    return results[0]
 }
 
 export default getRandomQuestion

@@ -12,6 +12,7 @@ const Game = ()=>{
 
   const {question,options,selectedOption,handleSubmit}:any = useContext(AppContext)
 
+  console.log({question})
 
   if(!question){
     return<></>

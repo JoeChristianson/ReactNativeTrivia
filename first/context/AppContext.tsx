@@ -11,16 +11,20 @@ const [question,setQuestion] = useState<any>(null)
   const [options,setOptions] = useState<null|string[]>(null)
   const [pastQuestions,setPastQuestions] = useState<string[]>([])
   
+  console.log("runing context")
+
   useEffect(()=>{
     try{
 
       const f = async ()=>{
-        const res = await fetch("http://192.168.1.64:3000/api/random-question")
+        console.log("trying to fetch")
+        const res = await fetch("http://172.16.1.44:3005/api/random-question")
         const data = await res.json()
-        const {question,answer,otherOptions} = data.question
-        const allOptions = makeAllOptions({answer,otherOptions})
+        console.log({data})
+        const {query,correctAnswer,otherOptions} = data.question
+        const allOptions = makeAllOptions({answer:correctAnswer,otherOptions})
         setOptions(allOptions)
-        setQuestion(question)
+        setQuestion(query)
       }
       f()
     }catch(err){
@@ -29,8 +33,10 @@ const [question,setQuestion] = useState<any>(null)
   },[pastQuestions])
 
   const handleSubmit = ()=>{
-    console.log("it's happening")
-    setPastQuestions([...pastQuestions,question])
+    
+
+    // console.log("it's happening")
+    // setPastQuestions([...pastQuestions,question])
   }
 
 
