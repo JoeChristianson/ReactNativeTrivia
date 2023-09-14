@@ -2,6 +2,7 @@ import express, { Response,Request } from 'express';
 import getRandomQuestion from '../utils/getRandomQuestion';
 import Question from '../models/Question';
 import { error } from 'console';
+import User from '../models/User';
 
 
 const apiRouter = express.Router();
@@ -38,14 +39,15 @@ apiRouter.post("/add-question", async (req:Request,res:Response)=>{
 
 apiRouter.post("/register",async (req:Request,res:Response)=>{
     try{
-        const payload = {
-            email:"jcfargond@gmail.com",
-            userId:"ipnsdfj9j99n9sdfd",
-            jwt:"sinoinsdfjjowefwef"
+        console.log("hitting")
+        const {username,email,password,confirmPassword} = req.body
+        if(password!==confirmPassword){
+            throw new Error("passwords do not match")
         }
-        
+        const user = await User.create({username,email,password})
+        console.log({user})
 
-        res.status(200).json(payload)
+        res.status(200).json({email,userId:"sdf",jwt:"oinsdfd"})
 
         
     }catch(err:any){
