@@ -1,16 +1,18 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import router from './routes';
+import cors from "cors"
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3005;
 
 // Middleware
+app.use(cors())
 app.use(bodyParser.json());
 
-app.use("/api",router)
 
 // Routes
+app.use("/api",router)
 app.get('/', (req, res) => {
 
     res.send('Hello, TypeScript & Express!');

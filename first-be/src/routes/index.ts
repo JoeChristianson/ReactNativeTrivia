@@ -24,5 +24,21 @@ apiRouter.post("/add-question",(req:Request,res:Response)=>{
     }
 })
 
+apiRouter.post("/register",async (req:Request,res:Response)=>{
+    try{
+        const payload = {
+            email:"jcfargond@gmail.com",
+            userId:"ipnsdfj9j99n9sdfd",
+            jwt:"sinoinsdfjjowefwef"
+        }
+        
+
+        res.status(200).json(payload)
+
+        
+    }catch(err:any){
+        res.status(500).json({success:false,error:err.message})
+    }
+})
 
 export default apiRouter;
