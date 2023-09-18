@@ -6,13 +6,14 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import Dash from './pages/Dash';
 import Quiz from './pages/Quiz';
+import Home from './pages/Home';
 
 const App: React.FC = () => (
   <Provider store={store}>
 
   <Router>
     <div>
-      <nav>
+      {/* <nav>
         <ul>
           <li>
             <Link to="/register">Register</Link>
@@ -21,14 +22,13 @@ const App: React.FC = () => (
             <Link to="/login">Login</Link>
           </li>
         </ul>
-      </nav>
+      </nav> */}
 
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path='/dash' element={<Dash></Dash>}></Route>
-        <Route path='/quiz' element={<Quiz></Quiz>}/>
-        <Route path="/" element={<h2>Welcome to our app</h2>} />
+        <Route path="/" element={<Home></Home>} />
       </Routes>
     </div>
   </Router>

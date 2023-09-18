@@ -1,6 +1,7 @@
 .current-question-cont{
     header{
         color:grey;
+        padding:20px;
     }
     section{
         margin-top: 50px;
@@ -10,10 +11,38 @@
             margin-bottom: 20px;
             cursor: pointer;
             width: 400px;
+            max-width: 80vw;
             &.selected{
                 background:rgb(186, 185, 185);
                 font-weight: 800;
             }
         }
     }
+    @media screen and (max-width:800px) {
+        header{
+            padding:0 20px;
+            h2{
+                font-size: 1.2rem;
+                
+            }
+        }
+        section{
+            margin-top: 10px;
+            padding:0 20px;
+        }
+        footer{
+            display: flex;
+            justify-content: center;
+
+            button{
+                margin: auto;
+                width: 230px;
+                padding: 15px 30px;
+                color: white;
+                border: none;
+                background: #01bc01;
+            }
+        }
+    }
+    
 }

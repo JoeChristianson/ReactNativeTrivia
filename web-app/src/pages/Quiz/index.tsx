@@ -10,7 +10,7 @@ import getQuizState from "./helpers/getQuizState"
 import QuizProgressBar from "../../components/QuizProgressBar"
 import QuizAttemptResults from "../../components/QuizAttemptResults"
 
-const Quiz = ()=>{
+const Quiz = ({date}:{date:{day:number,year:number,month:number}})=>{
 
     const dispatch:AppDispatch = useDispatch()
     const quizState = useSelector((state:any)=>state.currentQuiz)
@@ -19,9 +19,7 @@ const Quiz = ()=>{
 
     useEffect(()=>{
         const data = {
-            day:17,
-            month:8,
-            year:2023,
+            ...date,
             userId:'soinoionsdfsdf'
         }
         dispatch(getQuiz(data))
@@ -32,8 +30,6 @@ const Quiz = ()=>{
     const unansweredQuestions = questions.filter((q:Question)=>!q?.playerAnswer)
 
     const detailedQuizState = getQuizState({questions})
-
-    console.log({detailedQuizState})
 
     const currentQuestion = unansweredQuestions[0]
 
@@ -55,6 +51,7 @@ const Quiz = ()=>{
     question={currentQuestion}
     ></CurrentQuestion>}
     {!currentQuestion&&<QuizAttemptResults
+    date={new Date(`${date.month+1}-${date.day}-${date.year}`)}
     detailedQuizState={detailedQuizState}
     ></QuizAttemptResults>}
     

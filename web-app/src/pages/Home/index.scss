@@ -1,0 +1,10 @@
+.today-quiz{
+    h1{
+        text-align: center;
+    }
+    @media screen and (max-width:800px) {
+        h1{
+            font-size: 1.1rem;
+        }
+    }
+}
