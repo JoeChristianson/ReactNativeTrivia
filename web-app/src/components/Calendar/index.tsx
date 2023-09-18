@@ -1,5 +1,7 @@
 import { useState } from "react"
 import "./index.scss"
+import CalendarDay from "../CalendarDay"
+import createCalendarMonth from "./helpers/createCalendarMonth"
 
 
 const Calendar = ()=>{
@@ -9,6 +11,30 @@ const Calendar = ()=>{
     const months = [
         "January","February","March","April","May","June","July","August","September","October","November","December"
     ]
+
+    const userMonthRecord = {
+        month:date.month,
+        year:date.year,
+        finishedQuizzes:[
+            {
+                month:8,
+                year:2023,
+                day:4,
+                correct:7,
+                passed:true
+            },
+            {
+                month:8,
+                year:2023,
+                day:15,
+                correct:4,
+                passed:false
+            }
+        ]
+    }
+
+
+    const calendarMonth = createCalendarMonth({userMonthRecord}).days
 
     const handlePrevious = ()=>{
         if(date.month===0){
@@ -40,8 +66,6 @@ const Calendar = ()=>{
         setDate(newDate)
     }
 
-    const quizDays:any = [1,2,3,4,5,6,7,8]
-
     return<div className="calendar-cont">
         <header className="calendar-header">
             <button onClick={handlePrevious}>Prev</button>
@@ -58,8 +82,15 @@ const Calendar = ()=>{
             <button onClick={handleNext}>Next</button>
         </header>
         <main className="calendar-grid">
-            {quizDays.map((q:any)=>{
-                return<strong>D</strong>
+            {calendarMonth.map((q:any)=>{
+                
+                if(!q){
+                    return <div></div>
+                }
+                
+                return<CalendarDay
+                    quizDay={q}
+                ></CalendarDay>
             })}
         </main>
     </div>

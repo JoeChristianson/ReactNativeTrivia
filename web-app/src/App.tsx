@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import Dash from './pages/Dash';
+import Quiz from './pages/Quiz';
 
 const App: React.FC = () => (
   <Provider store={store}>
@@ -26,6 +27,7 @@ const App: React.FC = () => (
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path='/dash' element={<Dash></Dash>}></Route>
+        <Route path='/quiz' element={<Quiz></Quiz>}/>
         <Route path="/" element={<h2>Welcome to our app</h2>} />
       </Routes>
     </div>

@@ -1,0 +1,21 @@
+.calendar-day{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 700;
+    &.passed{
+        background:green;
+        color:white;
+    }
+    &.failed{
+        background:red;
+        color:white;
+    }
+    &.unavailable{
+        color:grey;
+        font-weight: 400;
+    }
+}

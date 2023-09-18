@@ -5,6 +5,8 @@ import { error } from 'console';
 import User from '../models/User';
 
 
+import quizRoutes from "./quiz/index"
+
 const apiRouter = express.Router();
 
 apiRouter.get("/all-questions", async (req,res)=>{
@@ -65,5 +67,7 @@ apiRouter.post('/answer',async (req,res)=>{
     }
 })
 
+
+apiRouter.use("/quiz",quizRoutes)
 
 export default apiRouter;

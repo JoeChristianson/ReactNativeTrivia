@@ -1,0 +1,14 @@
+export type QuestionParams = {
+    query:string
+    correctAnswer:string
+    otherOptions:[string,string,string]
+}
+
+type Question = {
+    query:string
+    correctAnswer:string
+    otherOptions:[string,string,string]
+    id:string
+}
+
+export default Question

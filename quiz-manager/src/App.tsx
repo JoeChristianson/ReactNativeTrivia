@@ -1,11 +1,16 @@
+import { Route, Routes, BrowserRouter, Link } from 'react-router-dom';
 import './App.css';
-import SubmitQuestion from './components/SubmitQuestion';
-import AllQuestions from './components/AllQuestions';
+import CreateQuiz from './pages/CreateQuiz';
 
 function App() {
   return (<>
-    <AllQuestions></AllQuestions>
- <SubmitQuestion></SubmitQuestion>
+  <BrowserRouter>
+  <Link to="/create-quiz"><h1>Create Quiz</h1></Link>
+<Routes>
+        <Route path="/create-quiz" element={<CreateQuiz />} />
+        <Route path="/" element={<h2>Welcome to our app</h2>} />
+      </Routes>
+  </BrowserRouter>
   </>
     );
 }

@@ -1,0 +1,19 @@
+.current-question-cont{
+    header{
+        color:grey;
+    }
+    section{
+        margin-top: 50px;
+        .option{
+            border:1px solid grey;
+            padding:20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            width: 400px;
+            &.selected{
+                background:rgb(186, 185, 185);
+                font-weight: 800;
+            }
+        }
+    }
+}
