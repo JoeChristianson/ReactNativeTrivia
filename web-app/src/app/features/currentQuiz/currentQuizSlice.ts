@@ -29,7 +29,7 @@ export const getQuiz = createAsyncThunk(
   async (params:GetQuizParams) => {
     const {month,day,year,userId} = params
     const date = `${month+1}-${day}-${year}`
-    const url = route("/api/quiz/"+date) 
+    const url = route("api/quiz/"+date) 
     console.log({url})
     const response = await fetch(url, {
       method: 'GET',
