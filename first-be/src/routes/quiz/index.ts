@@ -5,6 +5,18 @@ import getDatesWithoutQuiz from "./helpers/getDatesWithoutQuiz"
 
 const quizRoutes = express.Router()
 
+quizRoutes.get("/",async (req:Request,res:Response)=>{
+    try{
+        const quizzes = await DailyQuiz.find()
+        console.log({quizzes})
+        res.status(200).json({quizzes})
+    }catch(err){
+        console.log({err})
+        res.status(500).json({success:false})
+    }
+})
+
+
 quizRoutes.get("/:date",async (req:Request,res:Response)=>{
     try{
         const date = req.params.date
