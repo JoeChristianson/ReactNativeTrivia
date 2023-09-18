@@ -13,4 +13,13 @@
             background:red
         }
     }
+    @media screen and (max-width:800px) {
+        display: grid;
+        grid-template-columns: repeat(5,1fr);
+        .question-circle{
+            height: 15px;
+            width: 15px;
+            margin:10px;
+        }
+    }
 }
