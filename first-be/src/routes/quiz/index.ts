@@ -21,11 +21,16 @@ quizRoutes.get("/:date",async (req:Request,res:Response)=>{
 
 quizRoutes.post("/",async (req:Request,res:Response)=>{
     try{
-        const {questions,date} = req.body
+        let {questions,date} = req.body
         const newQuestions:any[] = []
         if(questions.length!==10){
             throw new Error("Must have ten questions")
         }
+        if(!date){
+            date = (await getDatesWithoutQuiz())[0]
+            }
+
+
         for (let question of questions){
             const newQuestion = await Question.create(question)
             newQuestions.push(newQuestion)
