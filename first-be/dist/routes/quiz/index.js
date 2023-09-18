@@ -24,6 +24,7 @@ quizRoutes.get("/:date", async (req, res) => {
         const date = req.params.date;
         console.log({ date });
         const fixedDate = new Date(date);
+        console.log({ fixedDate });
         const quiz = await DailyQuiz_1.default.findOne({ date: fixedDate }).populate("questions");
         console.log({ quiz });
         res.status(200).json({ quiz });
