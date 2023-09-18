@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import Question from '../../../types/Question';
+import route from '../../../utils/fex/route';
 
 
 type Quiz = {
@@ -27,8 +28,10 @@ export const getQuiz = createAsyncThunk(
   'currentQuiz/getQuiz',
   async (params:GetQuizParams) => {
     const {month,day,year,userId} = params
-    const date = `${month+1}-${day}-${year}` 
-    const response = await fetch('http://localhost:3005/api/quiz/'+date, {
+    const date = `${month+1}-${day}-${year}`
+    const url = route("/api/quiz/"+date) 
+    console.log({url})
+    const response = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
