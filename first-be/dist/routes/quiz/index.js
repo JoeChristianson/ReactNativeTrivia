@@ -8,6 +8,17 @@ const Question_1 = __importDefault(require("../../models/Question"));
 const DailyQuiz_1 = __importDefault(require("../../models/DailyQuiz"));
 const getDatesWithoutQuiz_1 = __importDefault(require("./helpers/getDatesWithoutQuiz"));
 const quizRoutes = express_1.default.Router();
+quizRoutes.get("/", async (req, res) => {
+    try {
+        const quizzes = await DailyQuiz_1.default.find();
+        console.log({ quizzes });
+        res.status(200).json({ quizzes });
+    }
+    catch (err) {
+        console.log({ err });
+        res.status(500).json({ success: false });
+    }
+});
 quizRoutes.get("/:date", async (req, res) => {
     try {
         const date = req.params.date;
