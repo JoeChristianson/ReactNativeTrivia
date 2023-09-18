@@ -9,7 +9,7 @@ const ReviewScreen = ({questions}:Props)=>{
 
 
     const handleFixQuestion = ()=>{
-        
+
     }
 
     return<main>
