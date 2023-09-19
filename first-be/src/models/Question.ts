@@ -14,7 +14,28 @@ const QuestionSchema = new mongoose.Schema({
     otherOptions:[{
         type:String,
         require:true
-    }]
+    }],
+    assigned:{
+        type:Boolean,
+        required:true
+    },
+    submitterName:{
+        type:String,
+        required:false
+    },
+    youtubeProfile:{
+        type:String,
+        required:false
+    },
+    xProfile:{
+        type:String,
+        required:false
+    },
+    rating:{
+        type:Number,
+        required:false
+    }
+    
 })
 
 const Question = mongoose.model("Question",QuestionSchema)

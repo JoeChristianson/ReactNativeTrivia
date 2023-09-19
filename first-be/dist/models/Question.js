@@ -16,7 +16,27 @@ const QuestionSchema = new mongoose_1.default.Schema({
     otherOptions: [{
             type: String,
             require: true
-        }]
+        }],
+    assigned: {
+        type: Boolean,
+        required: true
+    },
+    submitterName: {
+        type: String,
+        required: false
+    },
+    youtubeProfile: {
+        type: String,
+        required: false
+    },
+    xProfile: {
+        type: String,
+        required: false
+    },
+    rating: {
+        type: Number,
+        required: false
+    }
 });
 const Question = mongoose_1.default.model("Question", QuestionSchema);
 exports.default = Question;

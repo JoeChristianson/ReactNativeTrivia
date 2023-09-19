@@ -1,27 +1,19 @@
-import getQuizResults from "../../utils/getQuizResults"
-import getToday from "../../utils/getTodaysDate"
-import Quiz from "../Quiz"
+import BigNavButton from "../../components/BigNavButton"
+import Logo from "../../components/Logo"
 import "./index.scss"
 const Home = ()=>{
 
-    const date = getToday()
-    const today = new Date();
-    const quizResults = getQuizResults({date:today})
+    return<main className="home-main">
+        <Logo></Logo>
+        <div className="button-cont">
 
-    if(quizResults){
-        return<main className="today-quiz">
-            <h1>
-                Today's Quiz Has Been Completed.
-                </h1>
-                <p>Come tomorrow for a new quiz.</p>
-        </main>
-    }
-
-    return<main className="today-quiz">
-        <h1>Today's Quiz</h1>
-        <Quiz
-        date={date}
-        ></Quiz>
+        <BigNavButton dest="/quiz">
+            <h2>Today's Quiz</h2>
+        </BigNavButton>
+        <BigNavButton dest="/submit-question">
+            <h2>Submit Question</h2>
+            </BigNavButton>        
+        </div>
     </main>
 }
 

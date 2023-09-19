@@ -7,8 +7,13 @@ import { store } from './app/store';
 import Dash from './pages/Dash';
 import Quiz from './pages/Quiz';
 import Home from './pages/Home';
+import getToday from './utils/getTodaysDate';
+import SubmitQuestion from './pages/SubmitQuestion';
 
 const App: React.FC = () => (
+
+
+  
   <Provider store={store}>
 
   <Router>
@@ -29,6 +34,9 @@ const App: React.FC = () => (
         <Route path="/login" element={<Login />} />
         <Route path='/dash' element={<Dash></Dash>}></Route>
         <Route path="/" element={<Home></Home>} />
+        <Route path="/quiz" element={<Quiz date={getToday()}></Quiz>} />
+        <Route path="/submit-question" element={<SubmitQuestion/>} />
+
       </Routes>
     </div>
   </Router>

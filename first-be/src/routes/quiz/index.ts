@@ -49,7 +49,7 @@ quizRoutes.post("/",async (req:Request,res:Response)=>{
         }
 
         for (let question of questions){
-            const newQuestion = await Question.create(question)
+            const newQuestion = await Question.create({...question,assigned:true})
             newQuestions.push(newQuestion)
         }
         const trimmedDate = getTrimmedDate({dateString:date})

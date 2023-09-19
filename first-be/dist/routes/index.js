@@ -9,6 +9,7 @@ const Question_1 = __importDefault(require("../models/Question"));
 const console_1 = require("console");
 const User_1 = __importDefault(require("../models/User"));
 const index_1 = __importDefault(require("./quiz/index"));
+const question_1 = __importDefault(require("./question"));
 const apiRouter = express_1.default.Router();
 apiRouter.get("/all-questions", async (req, res) => {
     try {
@@ -65,4 +66,5 @@ apiRouter.post('/answer', async (req, res) => {
     }
 });
 apiRouter.use("/quiz", index_1.default);
+apiRouter.use("/question", question_1.default);
 exports.default = apiRouter;

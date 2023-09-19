@@ -50,7 +50,7 @@ quizRoutes.post("/", async (req, res) => {
             date = (await (0, getDatesWithoutQuiz_1.default)())[0];
         }
         for (let question of questions) {
-            const newQuestion = await Question_1.default.create(question);
+            const newQuestion = await Question_1.default.create({ ...question, assigned: true });
             newQuestions.push(newQuestion);
         }
         const trimmedDate = (0, getTrimmedDate_1.default)({ dateString: date });
