@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
+import getTrimmedDate from "../utils/date/getTrimmedDate";
 
 const DailyQuizSchema = new mongoose.Schema({
     date:{
-        type:Date,
+        type:String,
         unique:true,
         required:true
     },

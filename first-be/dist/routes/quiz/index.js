@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const Question_1 = __importDefault(require("../../models/Question"));
 const DailyQuiz_1 = __importDefault(require("../../models/DailyQuiz"));
 const getDatesWithoutQuiz_1 = __importDefault(require("./helpers/getDatesWithoutQuiz"));
+const getTrimmedDate_1 = __importDefault(require("../../utils/date/getTrimmedDate"));
 const quizRoutes = express_1.default.Router();
 quizRoutes.get("/", async (req, res) => {
     try {
@@ -21,11 +22,10 @@ quizRoutes.get("/", async (req, res) => {
 });
 quizRoutes.get("/:date", async (req, res) => {
     try {
-        const date = req.params.date;
-        console.log({ date });
-        const fixedDate = new Date(date);
-        console.log({ fixedDate });
-        const quiz = await DailyQuiz_1.default.findOne({ date: fixedDate }).populate("questions");
+        const dateString = req.params.date;
+        const trimmedDate = (0, getTrimmedDate_1.default)({ dateString });
+        console.log({ trimmedDate });
+        const quiz = await DailyQuiz_1.default.findOne({ date: trimmedDate }).populate("questions");
         console.log({ quiz });
         res.status(200).json({ quiz });
     }
@@ -48,7 +48,8 @@ quizRoutes.post("/", async (req, res) => {
             const newQuestion = await Question_1.default.create(question);
             newQuestions.push(newQuestion);
         }
-        const quiz = await DailyQuiz_1.default.create({ date, questions: newQuestions });
+        const trimmedDate = (0, getTrimmedDate_1.default)({ dateString: date });
+        const quiz = await DailyQuiz_1.default.create({ date: trimmedDate, questions: newQuestions });
         res.status(200).json({ success: true, quiz });
     }
     catch (err) {

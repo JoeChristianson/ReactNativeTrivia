@@ -2,6 +2,7 @@ import express, { Response,Request } from 'express';
 import Question from "../../models/Question"
 import DailyQuiz from "../../models/DailyQuiz"
 import getDatesWithoutQuiz from "./helpers/getDatesWithoutQuiz"
+import getTrimmedDate from '../../utils/date/getTrimmedDate';
 
 const quizRoutes = express.Router()
 
@@ -19,11 +20,10 @@ quizRoutes.get("/",async (req:Request,res:Response)=>{
 
 quizRoutes.get("/:date",async (req:Request,res:Response)=>{
     try{
-        const date = req.params.date
-        console.log({date})
-        const fixedDate = new Date(date)
-        console.log({fixedDate})
-        const quiz = await DailyQuiz.findOne({date:fixedDate}).populate("questions")
+        const dateString = req.params.date
+        const trimmedDate = getTrimmedDate({dateString})
+        console.log({trimmedDate})
+        const quiz = await DailyQuiz.findOne({date:trimmedDate}).populate("questions")
         console.log({quiz})
         res.status(200).json({quiz})
     }catch(err){
@@ -48,7 +48,8 @@ quizRoutes.post("/",async (req:Request,res:Response)=>{
             const newQuestion = await Question.create(question)
             newQuestions.push(newQuestion)
         }
-        const quiz = await DailyQuiz.create({date,questions:newQuestions})
+        const trimmedDate = getTrimmedDate({dateString:date})
+        const quiz = await DailyQuiz.create({date:trimmedDate,questions:newQuestions})
 
         res.status(200).json({success:true,quiz})
     }catch(err:any){
