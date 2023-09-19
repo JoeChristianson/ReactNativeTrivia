@@ -9,7 +9,11 @@ const DailyQuizSchema = new mongoose.Schema({
     questions:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Question"
-    }]
+    }],
+    trimmedDate:{
+        type:String,
+        unique:true,
+    }
 })
 
 const DailyQuiz = mongoose.model("DailyQuiz",DailyQuizSchema)

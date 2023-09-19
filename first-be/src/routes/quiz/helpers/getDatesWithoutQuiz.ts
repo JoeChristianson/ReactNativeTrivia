@@ -17,7 +17,10 @@ const getDatesWithoutQuiz = async ()=>{
 }).select('date').lean();
 
   // Extract only the dates from the quizzes
-  const quizDates = quizzes.map(q => q.date.toISOString().split('T')[0]);
+
+  const quizDates = quizzes.map(q => {
+    const date = new Date(q.date)
+    return date.toISOString().split('T')[0]});
 
   // Check all dates from today to next 30 days
   let current = new Date(startDate);

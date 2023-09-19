@@ -10,7 +10,7 @@ const ReviewScreen = ({questions}:Props)=>{
 
 
     const handleFixQuestion = ()=>{
-        
+
     }
 
     const handleSubmitButton =async  ()=>{
