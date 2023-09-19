@@ -23,7 +23,7 @@ quizRoutes.get("/:date",async (req:Request,res:Response)=>{
         const dateString = req.params.date
         const trimmedDate = getTrimmedDate({dateString})
         console.log({trimmedDate})
-        const quiz = await DailyQuiz.findOne({date:trimmedDate}).populate("questions")
+        const quiz = await DailyQuiz.findOne({trimmedDate}).populate("questions")
         console.log({quiz})
         res.status(200).json({quiz})
     }catch(err){
