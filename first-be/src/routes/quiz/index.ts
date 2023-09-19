@@ -41,15 +41,14 @@ quizRoutes.post("/",async (req:Request,res:Response)=>{
         }
         if(!date){
             date = (await getDatesWithoutQuiz())[0]
-            }
-
+        }
 
         for (let question of questions){
             const newQuestion = await Question.create(question)
             newQuestions.push(newQuestion)
         }
         const trimmedDate = getTrimmedDate({dateString:date})
-        const quiz = await DailyQuiz.create({date:trimmedDate,questions:newQuestions})
+        const quiz = await DailyQuiz.create({date,trimmedDate,questions:newQuestions})
 
         res.status(200).json({success:true,quiz})
     }catch(err:any){

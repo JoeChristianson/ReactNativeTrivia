@@ -1,10 +1,11 @@
 import "./index.scss"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Question from "../../types/Question"
 import { AppDispatch } from "../../app/store"
 import { useDispatch } from "react-redux"
 import { answerQuestion } from "../../app/features/currentQuiz/currentQuizSlice"
+import getScrambledAnswers from "../../utils/question/getScrambledAnswers"
 
 type Props = {
     question:Question
@@ -17,7 +18,7 @@ const CurrentQuestion = ({question}:Props)=>{
     const {query,correctAnswer,otherOptions,_id} = question
 
     const options = [...otherOptions,correctAnswer]
-
+    const [scrambledAnswers,setScrambledAnswers] = useState<null|string[]>(null)
     const handleSelect = (option:string)=>{
         setCurrentSelection(option)
     }
@@ -29,6 +30,12 @@ const CurrentQuestion = ({question}:Props)=>{
         dispatch(answerQuestion({_id,playerAnswer:currentSelection}))
     }
 
+    useEffect(()=>{
+        const scrambledAnswers = getScrambledAnswers(options)
+        setScrambledAnswers(scrambledAnswers)
+    },[question])
+
+
     return<main className="current-question-cont">
         <header>
             <h2>
@@ -37,7 +44,7 @@ const CurrentQuestion = ({question}:Props)=>{
             
             </header>
         <section className="current-question-options">
-            {options.map((option:string,index:number)=>{
+            {(scrambledAnswers||options).map((option:string,index:number)=>{
                 return<div onClick={()=>handleSelect(option)} className={`option ${option===currentSelection?"selected":""}`}>
                     {option}
                 </div>

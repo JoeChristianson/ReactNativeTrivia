@@ -49,7 +49,7 @@ quizRoutes.post("/", async (req, res) => {
             newQuestions.push(newQuestion);
         }
         const trimmedDate = (0, getTrimmedDate_1.default)({ dateString: date });
-        const quiz = await DailyQuiz_1.default.create({ date: trimmedDate, questions: newQuestions });
+        const quiz = await DailyQuiz_1.default.create({ date, trimmedDate, questions: newQuestions });
         res.status(200).json({ success: true, quiz });
     }
     catch (err) {
