@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "manager": "concurrently \"cd first-be && npm run dev-server\" \"cd quiz-manager && npm start\"",
         "dev": "concurrently \"cd first-be && npm run dev-server\" \"cd web-app && npm start\"",
         "install": "cd first-be && npm i -f && cd ../web-app && npm i -f",
         "test": "echo \"Error: no test specified\" && exit 1",

@@ -1,0 +1,17 @@
+@import "../../style/variables.scss";
+
+.big-nav-button{
+    width: 200px;
+    height: 120px;
+    background: none;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    background: $button-bg;
+    color:$button-color;
+    border: none;
+    cursor: pointer;
+    opacity: .9;
+    &:hover{
+        opacity: 1;
+    }
+}
