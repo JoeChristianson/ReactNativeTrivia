@@ -1,4 +1,5 @@
-import Question from "../CurrentQuestionEdit/Question"
+import Question from "../../types/Question"
+
 
 type Props = {
     question:Question

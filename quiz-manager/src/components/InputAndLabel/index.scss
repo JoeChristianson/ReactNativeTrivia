@@ -1,0 +1,11 @@
+.input-cont{
+    display: flex;
+    flex-direction: column;
+    width:500px;
+    max-width: 85vw;
+    textarea{
+        resize: none;
+        height: 3rem;
+    }
+    margin-bottom: 1rem;
+}

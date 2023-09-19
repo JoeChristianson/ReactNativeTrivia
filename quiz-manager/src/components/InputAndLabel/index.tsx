@@ -12,7 +12,7 @@ const InputAndLabel = ({formValues,fieldName,setFormValues}:Props)=>{
 
     const value= formValues[fieldName]||""
 
-    const handleChange = (e:ChangeEvent<HTMLInputElement>)=>{
+    const handleChange = (e:ChangeEvent<HTMLTextAreaElement>)=>{
         const newFormValues = {...formValues}
         newFormValues[fieldName] = e.target.value
         setFormValues(newFormValues)
@@ -20,7 +20,7 @@ const InputAndLabel = ({formValues,fieldName,setFormValues}:Props)=>{
 
     return<div className="input-cont">
         <label>{fieldName}</label>
-        <input onChange={handleChange} value={value}></input>
+        <textarea onChange={handleChange} value={value}></textarea>
     </div>
 }
 

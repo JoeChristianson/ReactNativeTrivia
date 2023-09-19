@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import Question from "./Question"
 import InputAndLabel from "../InputAndLabel"
 import { DynamicAnyObject } from "../../types/genericObjects"
-
+import "./index.scss"
 type Props = {
     questions:Question[]
     setQuestions:React.Dispatch<Question[]>
@@ -52,7 +52,7 @@ const CurrentQuestionEdit = ({questions,questionIndex,setQuestions,setQuestionIn
         setQuestionIndex(questionIndex-1)
     }
 
-    return<main>
+    return<main className="current-question-edit-main">
         <h2>Question {questionIndex+1}</h2>
             <InputAndLabel
             formValues={formState}
