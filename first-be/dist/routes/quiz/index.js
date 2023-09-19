@@ -25,7 +25,12 @@ quizRoutes.get("/:date", async (req, res) => {
         const dateString = req.params.date;
         const trimmedDate = (0, getTrimmedDate_1.default)({ dateString });
         console.log({ trimmedDate });
-        const quiz = await DailyQuiz_1.default.findOne({ date: trimmedDate }).populate("questions");
+        const allQuizzes = await DailyQuiz_1.default.find();
+        allQuizzes.forEach((q) => {
+            const match = trimmedDate === q.trimmedDate;
+            console.log("trimmedDateOfOne:", q.trimmedDate, ",match", match);
+        });
+        const quiz = await DailyQuiz_1.default.findOne({ trimmedDate }).populate("questions");
         console.log({ quiz });
         res.status(200).json({ quiz });
     }
