@@ -11,7 +11,7 @@ type Args = {
 
 const submitQuestion = async (variables:Args)=>{
     const res = await fexPost("api/question",variables)
-    console.log({res})
+    return res
 }
 
 export default submitQuestion

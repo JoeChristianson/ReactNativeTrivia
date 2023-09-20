@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react"
 import "./index.scss"
 import { DynamicAnyObject } from "../../types/DynamicObject"
+import camelCaseToTitleCase from "../../utils/convertFromCamelcase"
 
 type Props = {
     formValues:DynamicAnyObject,
@@ -20,7 +21,7 @@ const InputAndLabel = ({formValues,fieldName,setFormValues,textarea}:Props)=>{
     }
 
     return<div className="input-cont">
-        <label>{fieldName}</label>
+        <label>{camelCaseToTitleCase(fieldName)}</label>
         {textarea?<textarea onChange={handleChange} value={value}></textarea>:<input onChange={handleChange} value={value}></input>}
     </div>
 }

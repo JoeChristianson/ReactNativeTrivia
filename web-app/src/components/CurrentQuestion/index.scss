@@ -1,3 +1,5 @@
+@import "../../style/variables";
+
 .current-question-cont{
     width:500px;
     display: flex;
@@ -7,19 +9,27 @@
     header{
         color:grey;
         padding:20px;
+        text-align: center;
     }
     section{
         margin-top: 50px;
         .option{
-            border:1px solid grey;
+            border:none;
+            background:$quiz-option-bg;
+            color:$quiz-option-color;
             padding:20px;
             margin-bottom: 20px;
             cursor: pointer;
             width: 400px;
             max-width: 80vw;
+            opacity: .8;
             &.selected{
-                background:rgb(186, 185, 185);
-                font-weight: 800;
+                opacity: 1;
+                background:rgb(206, 216, 13);
+                // font-weight: 700;
+            }
+            &:hover{
+                opacity: 1;
             }
         }
     }

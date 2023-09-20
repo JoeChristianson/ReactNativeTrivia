@@ -4,6 +4,7 @@ import "./index.scss"
 import { DynamicAnyObject } from "../../types/DynamicObject"
 import isObjectComplete from "../../utils/isObjectComplete"
 import submitQuestion from "../../api/submitQuestion"
+import SubmitButton from "../../components/SubmitButton"
 
 const SubmitQuestion = ()=>{
 
@@ -36,13 +37,15 @@ const SubmitQuestion = ()=>{
 
     const isComplete = isObjectComplete({object:requiredFields})
 
-    const handleSubmit = ()=>{
+    const handleSubmit = async ()=>{
         const {query,correctAnswer,otherOption1,otherOption2,otherOption3,submitterName,youtubeProfile,xProfile} = formValues
         const variables = {
             query,correctAnswer,otherOptions:[otherOption1,otherOption2,otherOption3],submitterName,youtubeProfile,xProfile
         }
-        submitQuestion(variables)
+        const res = await submitQuestion(variables)
+        if(res.success){
 
+        }
     }
 
     return<main className="submit-question-main">
@@ -53,8 +56,9 @@ const SubmitQuestion = ()=>{
             setFormValues={setFormValues}
             textarea={textAreas.includes(f)}
             ></InputAndLabel>
-        })}
-        {isComplete&&<button onClick={handleSubmit}>Submit Question</button>}
+        })}<footer>
+        {isComplete&&<SubmitButton handleClick={handleSubmit}>Submit Question</SubmitButton>}
+        </footer>
     </main>
 }
 

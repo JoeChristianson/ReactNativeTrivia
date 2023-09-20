@@ -1,15 +1,29 @@
 .input-cont{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1.5rem;
+    display: grid;
+    width: fit-content;
+    margin: auto;
+    grid-template-columns: 200px 600px;
+    grid-gap: 20px;
+    padding:20px;
     label{
         color:white;
         margin-bottom: .5rem;
     }
     textarea,input{
-        width: 500px;
         max-width: 85vw;
         padding:.5rem;
+        
+    }
+    @media screen and (max-width:800px) {
+        display: flex;
+        flex-direction: column;
+        width: 90vw;
+        textarea,input{
+         max-width: 80vw;   
+        }
+        label{
+            font-size: 1rem !important;
+            
+        }
     }
 }
