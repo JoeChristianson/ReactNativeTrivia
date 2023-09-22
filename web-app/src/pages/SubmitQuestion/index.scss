@@ -2,4 +2,18 @@
 .submit-question-main{
     min-height: 100vh;
     background:$main-bg;
+    color:#ddd;
+    display: flex;
+    flex-direction: column;
+    form{
+        flex-grow: 1;
+        margin: auto;
+        display: grid;
+        justify-items: center;
+        padding-bottom: 50px;
+        align-items: center ;
+        button{
+            font-size: 1.2rem;
+        }
+    }
 }

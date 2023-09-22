@@ -1,15 +1,19 @@
 .input-cont{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 1.5rem;
+    padding-top: 1.5rem;
     label{
-        color:white;
+        align-self: start;
         margin-bottom: .5rem;
     }
     textarea,input{
         width: 500px;
         max-width: 85vw;
         padding:.5rem;
+        border-radius: 5px;
+        resize: none;
+    }
+    @media screen and (max-width:500px) {
+        padding-top: .8em;
     }
 }
