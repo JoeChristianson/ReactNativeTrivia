@@ -4,6 +4,8 @@ import "./index.scss"
 import { DynamicAnyObject } from "../../types/DynamicObject"
 import isObjectComplete from "../../utils/isObjectComplete"
 import submitQuestion from "../../api/submitQuestion"
+import SubmitButton from "../../components/SubmitButton"
+import MobileNav from "../../layout/MobileNav"
 
 const SubmitQuestion = ()=>{
 
@@ -46,15 +48,24 @@ const SubmitQuestion = ()=>{
     }
 
     return<main className="submit-question-main">
+        <MobileNav></MobileNav>
+        <form>
+        <div>
+
         {fields.map((f)=>{
             return<InputAndLabel
             fieldName={f}
             formValues={formValues}
             setFormValues={setFormValues}
             textarea={textAreas.includes(f)}
+            isInline={true}
             ></InputAndLabel>
         })}
-        {isComplete&&<button onClick={handleSubmit}>Submit Question</button>}
+            </div>
+            <footer>
+        {!isComplete&&<SubmitButton handleClick={handleSubmit}>Submit Question</SubmitButton>}
+            </footer>
+        </form>
     </main>
 }
 
