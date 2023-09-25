@@ -9,6 +9,7 @@ import Quiz from './pages/Quiz';
 import Home from './pages/Home';
 import getToday from './utils/getTodaysDate';
 import SubmitQuestion from './pages/SubmitQuestion';
+import Test from './pages/Test';
 
 const App: React.FC = () => (
 
@@ -36,6 +37,7 @@ const App: React.FC = () => (
         <Route path="/" element={<Home></Home>} />
         <Route path="/quiz" element={<Quiz date={getToday()}></Quiz>} />
         <Route path="/submit-question" element={<SubmitQuestion/>} />
+        <Route path="/test" element={<Test/>} />
 
       </Routes>
     </div>

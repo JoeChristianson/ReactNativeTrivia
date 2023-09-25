@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Form, { Field } from '../../components/Form';
-import Main from '../../components/Main';
+import Main from '../../components/Wrapper';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../app/store';
 import { login } from '../../app/features/auth/authSlice';

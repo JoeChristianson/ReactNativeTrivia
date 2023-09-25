@@ -1,20 +1,18 @@
-import React from 'react';
-import './index.scss';
+import { ReactNode } from "react"
+import "./index.scss"
 
 interface Props {
-  children: React.ReactNode;
-  title: string;
+    children:ReactNode
+    successScreen?:ReactNode
 }
+// we'll add the stylings for mobile and the loading screen in here.
+const Main = ({children,successScreen}:Props)=>{
 
-const Wrapper: React.FC<Props> = ({ children, title }) => {
-  return (
-    <div className="wrapper">
-      <h2>{title}</h2>
-      <div className="form-content">
+
+    return<main className="main-wrapper-1">
         {children}
-      </div>
-    </div>
-  );
+        {successScreen}
+    </main>
 }
 
-export default Wrapper;
+export default Main
