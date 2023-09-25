@@ -3,5 +3,12 @@
 
 .question-result-main{
     @include main;
-
+    ul{
+        list-style: none;
+        li{
+            &.correct-answer{
+                color:green;
+            }
+        }
+    }
 }

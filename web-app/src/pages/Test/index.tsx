@@ -13,15 +13,13 @@ const Test = ()=>{
             "Wrong One","Your wrong guess","The last guess"
         ],
         submitterName:"Joe Christianson",
-        
+        playerAnswer:"Your wrong guess"
 
     }
 
-    const guess = "Your wrong guess"
 
     return<QuestionResult
     question={question}
-    guess={guess}
     ></QuestionResult>}
 
 export default Test

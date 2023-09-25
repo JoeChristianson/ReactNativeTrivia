@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import Question from '../../../types/Question';
 import route from '../../../utils/fex/route';
+import addNeededFieldsForQuiz from './helpers/addNeededFieldsForQuiz';
 
 
-type Quiz = {
+export type Quiz = {
   id:string
   questions:Question[]
 }
@@ -54,6 +55,10 @@ interface AnswerQuestionPayload{
   playerAnswer:string
 }
 
+interface FinishReviewQuestionPayload{
+  _id:string
+}
+
 const currentQuizSlice = createSlice({
   name: 'currentQuizSlice',
   initialState,
@@ -71,32 +76,35 @@ const currentQuizSlice = createSlice({
       })
       state.quiz.questions = questionSet
       state.error = undefined
-    }
+    },
+    finishReviewQuestion:(state:State,action:PayloadAction<FinishReviewQuestionPayload>)=>{
+      const {_id} = action.payload
+      if(!state?.quiz){
+        return
+      }
+      const questionSet = state.quiz.questions.map((q)=>{
+        if(_id!==q._id){
+          return q
+        }
+        return {...q,reviewed:true}
+      })
+      state.quiz.questions = questionSet
+      state.error = undefined
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getQuiz.fulfilled, (state, action:any) => {
-        state.quiz = action.payload.quiz
-        console.log("worked",action.payload)
-
+        const quiz = action.payload.quiz
+        state.quiz = addNeededFieldsForQuiz({quiz})
       })
       .addCase(getQuiz.rejected, (state, action) => {
         state.error = action.error.message;        
         console.log("error")
       })
-      // .addCase(login.fulfilled, (state, action) => {
-      //   state.status = 'fulfilled';
-      //   state.email = action.payload.email;
-      //   state.userId = action.payload.userId;
-      //   state.jwt = action.payload.jwt;
-      // })
-      // .addCase(login.rejected, (state, action) => {
-      //   state.status = 'rejected';
-      //   state.error = action.error.message;
-      // });
   }
 });
 
 
 export default currentQuizSlice.reducer;
-export const {answerQuestion} = currentQuizSlice.actions
+export const {answerQuestion,finishReviewQuestion} = currentQuizSlice.actions

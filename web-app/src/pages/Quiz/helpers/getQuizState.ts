@@ -14,6 +14,10 @@ type DetailedQuestionState = {
     questionNumber:number
     playerAnswer?:string
     status:QuestionStatus
+    confirmed?:boolean
+    submitterName?:string
+    youtubeURL?:string
+    xProfile?:string
 }
 
 export type DetailedQuizState = DetailedQuestionState[]
