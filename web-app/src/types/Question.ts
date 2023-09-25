@@ -8,6 +8,7 @@ type Question = {
     submitterName?:"Joe Christianson",
     youtubeURL?:"youtube.com",
     xProfile?:"joeman234"
+    reviewed?:boolean
 }
 
 export default Question

@@ -28,6 +28,12 @@
                 background:rgb(206, 216, 13);
                 // font-weight: 700;
             }
+            &.correct{
+                background:green;
+            }
+            &.wrong{
+                background: red;
+            }
             &:hover{
                 opacity: 1;
             }
