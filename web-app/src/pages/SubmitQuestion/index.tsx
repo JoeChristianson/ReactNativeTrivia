@@ -55,6 +55,7 @@ const SubmitQuestion = ()=>{
 
         setSuccessScreen(true)
     }
+}
 
     const SuccessScreenProp = successScreen&&<SuccessScreen></SuccessScreen>
 
@@ -81,7 +82,7 @@ const SubmitQuestion = ()=>{
     </main>
         </Main>
 }
-}
+
 export default SubmitQuestion
 
 function SuccessScreen(){
