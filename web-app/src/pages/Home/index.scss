@@ -13,8 +13,11 @@
         font-size: 9rem;
     }
     .button-cont{
+display: grid;
+grid-template-columns: 1fr 1fr;
         button{
             margin: 0 50px;
+            width: 80%;
         }
         margin-bottom: 100px;
     }

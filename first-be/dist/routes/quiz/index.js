@@ -70,4 +70,24 @@ quizRoutes.get("/missingQuizzes", async (req, res) => {
         res.status(500).json({ success: false, error: err.message });
     }
 });
+quizRoutes.post("/submit-build", async (req, res) => {
+    try {
+        console.log("working");
+        const questionIds = req.body.questionIds;
+        for (let questionId of questionIds) {
+            const question = await Question_1.default.findById(questionId);
+            if (question) {
+                question.assigned = true;
+                question.save();
+            }
+        }
+        const date = (await (0, getDatesWithoutQuiz_1.default)())[0];
+        const quiz = await DailyQuiz_1.default.create({ date, questions: questionIds });
+        console.log({ quiz });
+        res.status(200).json({ success: true, quiz });
+    }
+    catch (err) {
+        res.status(500).json({ success: false });
+    }
+});
 exports.default = quizRoutes;

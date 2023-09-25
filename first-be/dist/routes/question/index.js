@@ -18,6 +18,19 @@ questionRoutes.post("/", async (req, res) => {
         res.status(500).json({ success: false });
     }
 });
+questionRoutes.post("/bulk-add", async (req, res) => {
+    try {
+        const { questions } = req.body;
+        for (let question of questions) {
+            const params = { ...question, assigned: false };
+            await Question_1.default.create(params);
+        }
+        res.status(200).json({ success: true });
+    }
+    catch (err) {
+        res.status(500).json({ success: false });
+    }
+});
 questionRoutes.get("/unassigned", async (req, res) => {
     try {
         const questions = await Question_1.default.find({ assigned: false });
@@ -35,6 +48,16 @@ questionRoutes.get("/assigned", async (req, res) => {
     }
     catch (err) {
         console.log({ err });
+        res.status(500).json({ success: false });
+    }
+});
+questionRoutes.delete("/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        await Question_1.default.findByIdAndDelete(id);
+        res.status(200).json({ success: true });
+    }
+    catch (err) {
         res.status(500).json({ success: false });
     }
 });

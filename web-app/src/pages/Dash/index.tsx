@@ -1,5 +1,5 @@
 import Calendar from "../../components/Calendar"
-import Main from "../../components/Main"
+import Main from "../../components/Wrapper"
 
 
 
