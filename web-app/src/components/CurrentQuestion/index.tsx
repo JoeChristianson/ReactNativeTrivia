@@ -33,6 +33,7 @@ const CurrentQuestion = ({question}:Props)=>{
     useEffect(()=>{
         const scrambledAnswers = getScrambledAnswers(options)
         setScrambledAnswers(scrambledAnswers)
+        setCurrentSelection(null)
     },[question])
 
 

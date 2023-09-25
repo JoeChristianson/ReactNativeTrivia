@@ -1,0 +1,49 @@
+@import "../../style/variables.scss";
+.submit-question-main{
+    min-height: 100vh;
+    background:$main-bg;
+    color:#ddd;
+    display: flex;
+    flex-direction: column;
+    form{
+        flex-grow: 1;
+        margin: auto;
+        display: grid;
+        justify-items: center;
+        padding-bottom: 50px;
+        align-items: center ;
+        button{
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.question-submit-success-header{
+    display: flex;
+    padding:30px;
+    justify-content: center;
+color:$heading-color;
+text-align: center;
+}
+
+.question-submit-success-main{
+margin-top: 150px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+>*{
+    margin:10px;
+}
+    a{
+        button{
+
+            font-size: 1.2rem;
+            width: unset;
+            padding:1em 2em;
+            height: unset;
+            width: 100%;
+            border-radius: 50px;
+        }
+    }
+
+}

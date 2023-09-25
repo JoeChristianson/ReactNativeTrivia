@@ -1,21 +1,48 @@
+@import "../../style/variables";
+
 .current-question-cont{
+    width:500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100vw;
     header{
         color:grey;
         padding:20px;
+        text-align: center;
     }
     section{
         margin-top: 50px;
         .option{
-            border:1px solid grey;
+            border:none;
+            background:$quiz-option-bg;
+            color:$quiz-option-color;
             padding:20px;
             margin-bottom: 20px;
             cursor: pointer;
             width: 400px;
             max-width: 80vw;
+            opacity: .8;
             &.selected{
-                background:rgb(186, 185, 185);
-                font-weight: 800;
+                opacity: 1;
+                background:rgb(206, 216, 13);
+                // font-weight: 700;
             }
+            &:hover{
+                opacity: 1;
+            }
+        }
+    }
+    footer{
+        padding-top: 40px;
+        button{
+            margin: auto;
+            padding: 15px 30px;
+            color: white;
+            border: none;
+            background: #059d05;
+            font-weight: 700;
+            cursor: pointer;
         }
     }
     @media screen and (max-width:800px) {
@@ -33,14 +60,11 @@
         footer{
             display: flex;
             justify-content: center;
-
+            padding-top: 10px;
             button{
                 margin: auto;
                 width: 230px;
                 padding: 15px 30px;
-                color: white;
-                border: none;
-                background: #01bc01;
             }
         }
     }

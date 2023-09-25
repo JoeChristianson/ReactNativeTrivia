@@ -17,14 +17,9 @@ const SubmitQuestion = ()=>{
 
     const handleSubmit:MouseEventHandler = (e)=>{
         e.preventDefault()
-        console.log(state)
         const otherOptions = [state.option1,state.option2,state.option3]
         const {correctAnswer,question} = state
-        console.log({state})
         addQuestion({question,correctAnswer,otherOptions})
-
-
-
     }
     
 

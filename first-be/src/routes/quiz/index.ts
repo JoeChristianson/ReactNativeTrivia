@@ -49,7 +49,7 @@ quizRoutes.post("/",async (req:Request,res:Response)=>{
         }
 
         for (let question of questions){
-            const newQuestion = await Question.create(question)
+            const newQuestion = await Question.create({...question,assigned:true})
             newQuestions.push(newQuestion)
         }
         const trimmedDate = getTrimmedDate({dateString:date})
@@ -68,6 +68,27 @@ quizRoutes.get("/missingQuizzes",async (req:Request,res:Response)=>{
         res.status(200).json({success:true,missingQuizzes})
     }catch(err:any){
         res.status(500).json({success:false,error:err.message})
+    }
+})
+
+quizRoutes.post("/submit-build",async (req:Request,res:Response)=>{
+    try{
+        console.log("working")
+        const questionIds = req.body.questionIds
+
+        for (let questionId of questionIds){
+            const question = await Question.findById(questionId)
+            if(question){
+                question.assigned = true
+                question.save()
+            }
+        }
+        const date = (await getDatesWithoutQuiz())[0]
+        const quiz = await DailyQuiz.create({date,questions:questionIds})
+        console.log({quiz})
+        res.status(200).json({success:true,quiz})
+    }catch(err){
+        res.status(500).json({success:false})
     }
 })
 

@@ -6,6 +6,7 @@ import User from '../models/User';
 
 
 import quizRoutes from "./quiz/index"
+import questionRoutes from './question';
 
 const apiRouter = express.Router();
 
@@ -69,5 +70,7 @@ apiRouter.post('/answer',async (req,res)=>{
 
 
 apiRouter.use("/quiz",quizRoutes)
+apiRouter.use("/question",questionRoutes)
+
 
 export default apiRouter;
