@@ -27,14 +27,14 @@ const Quiz = ({date}:{date:{day:number,year:number,month:number}})=>{
 
     const questions = quizState?.quiz?.questions||[]
 
-    const unansweredQuestions = questions.filter((q:Question)=>!q?.playerAnswer)
+    const unansweredQuestions = questions.filter((q:Question)=>!q?.reviewed)
 
     const detailedQuizState = getQuizState({questions})
 
     const currentQuestion = unansweredQuestions[0]
 
     if(!questions||questions.length===0){
-        return<></>
+        return<QU
     }
 
 

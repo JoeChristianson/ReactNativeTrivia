@@ -4,6 +4,7 @@ type Question = {
     correctAnswer:string
     otherOptions:[string,string,string]
     playerAnswer?:string
+    reviewed?:boolean
 }
 
 export default Question

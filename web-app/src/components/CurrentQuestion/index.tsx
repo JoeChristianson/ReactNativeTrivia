@@ -36,6 +36,10 @@ const CurrentQuestion = ({question}:Props)=>{
         setCurrentSelection(null)
     },[question])
 
+    if(question.playerAnswer){
+        return<div>Answered</div>
+    }
+
 
     return<main className="current-question-cont">
         <header>

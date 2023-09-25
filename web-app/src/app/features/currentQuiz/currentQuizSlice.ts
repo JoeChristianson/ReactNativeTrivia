@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import Question from '../../../types/Question';
 import route from '../../../utils/fex/route';
+import addExtraQuestionFields from './helpers/addExtraQuestionFields';
 
 
-type Quiz = {
+export type Quiz = {
   id:string
   questions:Question[]
 }
@@ -30,7 +31,6 @@ export const getQuiz = createAsyncThunk(
     const {month,day,year,userId} = params
     const date = `${month+1}-${day}-${year}`
     const url = route("api/quiz/"+date) 
-    console.log({url})
     const response = await fetch(url, {
       method: 'GET',
       headers: {
@@ -43,7 +43,6 @@ export const getQuiz = createAsyncThunk(
     }
 
     const data = await response.json();
-    console.log({data})
     return data;
 
   }
@@ -76,24 +75,15 @@ const currentQuizSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getQuiz.fulfilled, (state, action:any) => {
-        state.quiz = action.payload.quiz
-        console.log("worked",action.payload)
-
+        const quiz = action.payload.quiz
+        state.quiz = addExtraQuestionFields({quiz})
+console.log("quiz",state.quiz)
       })
       .addCase(getQuiz.rejected, (state, action) => {
         state.error = action.error.message;        
         console.log("error")
       })
-      // .addCase(login.fulfilled, (state, action) => {
-      //   state.status = 'fulfilled';
-      //   state.email = action.payload.email;
-      //   state.userId = action.payload.userId;
-      //   state.jwt = action.payload.jwt;
-      // })
-      // .addCase(login.rejected, (state, action) => {
-      //   state.status = 'rejected';
-      //   state.error = action.error.message;
-      // });
+
   }
 });
 
