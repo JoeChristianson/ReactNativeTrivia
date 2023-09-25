@@ -5,6 +5,9 @@ type Question = {
     otherOptions:[string,string,string]
     playerAnswer?:string
     reviewed?:boolean
+    submitterName?:"Joe Christianson",
+    youtubeURL?:"youtube.com",
+    xProfile?:"joeman234"
 }
 
 export default Question
