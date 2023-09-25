@@ -71,5 +71,26 @@ quizRoutes.get("/missingQuizzes",async (req:Request,res:Response)=>{
     }
 })
 
+quizRoutes.post("/submit-build",async (req:Request,res:Response)=>{
+    try{
+        console.log("working")
+        const questionIds = req.body.questionIds
+
+        for (let questionId of questionIds){
+            const question = await Question.findById(questionId)
+            if(question){
+                question.assigned = true
+                question.save()
+            }
+        }
+        const date = (await getDatesWithoutQuiz())[0]
+        const quiz = await DailyQuiz.create({date,questions:questionIds})
+        console.log({quiz})
+        res.status(200).json({success:true,quiz})
+    }catch(err){
+        res.status(500).json({success:false})
+    }
+})
+
 
 export default quizRoutes

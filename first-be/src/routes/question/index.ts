@@ -17,6 +17,19 @@ questionRoutes.post("/",async (req:Request,res:Response)=>{
     }
 })
 
+questionRoutes.post("/bulk-add",async(req:Request,res:Response)=>{
+    try{
+        const {questions} = req.body
+        for (let question of questions){
+            const params = {...question,assigned:false}
+            await Question.create(params)
+        }
+        res.status(200).json({success:true})
+    }catch(err){
+        res.status(500).json({success:false})
+    }
+})
+
 questionRoutes.get("/unassigned",async (req:Request,res:Response)=>{
     try{
         const questions = await Question.find({assigned:false})
@@ -33,6 +46,16 @@ questionRoutes.get("/assigned",async (req:Request,res:Response)=>{
         res.status(200).json({success:true,questions})
     }catch(err){
         console.log({err})
+        res.status(500).json({success:false})
+    }
+})
+
+questionRoutes.delete("/:id",async (req:Request,res:Response)=>{
+    try{
+        const id = req.params.id
+        await Question.findByIdAndDelete(id)
+        res.status(200).json({success:true})
+    }catch(err){
         res.status(500).json({success:false})
     }
 })

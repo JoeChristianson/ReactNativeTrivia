@@ -10,11 +10,11 @@ type Props = {
 const BigNavButton = ({dest,children}:Props)=>{
 
 
-    return<Link to={dest}>
+    return<a href={dest}>
     <button className="big-nav-button">
         {children}
     </button>
-    </Link>
+    </a>
 }
 
 export default BigNavButton
